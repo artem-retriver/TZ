@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bf7694de53d374fbf479dbb0bab2ce, type: 3}
+  m_Name: ShopProductInfo_ResourcesOne
+  m_EditorClassIdentifier: 
+  _titleText: "\u0420\u0415\u0421\u0423\u0420\u0421\u042B \u0414\u041B\u042F \u0421\u0422\u0420\u041E\u0419\u041A\u0418"
+  _descriptionText: "\u041F\u043E\u043A\u043E\u0440\u0438 \u043D\u0435\u0431\u0435\u0441\u0430,
+    \u043F\u043E\u0441\u0442\u0440\u043E\u0439 \u043F\u043B\u043E\u0442 \u0441\u0432\u043E\u0435\u0439
+    \u043C\u0435\u0447\u0442\u044B"
+  _newPriceText: $ 2.99
+  _oldPriceText: $ 3.33
+  _shopProductPrefab: {fileID: 339238843600280930, guid: 8d67700deca544e49a58897b98264710, type: 3}
+  _materialPanelInfoPool:
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}

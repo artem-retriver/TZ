@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bf7694de53d374fbf479dbb0bab2ce, type: 3}
+  m_Name: ShopProductInfo_ResourcesTwo
+  m_EditorClassIdentifier: 
+  _titleText: 222222222222
+  _descriptionText: 2222222222222
+  _newPriceText: 222222222222
+  _oldPriceText: 22222222222222
+  _shopProductPrefab: {fileID: 339238843600280930, guid: 8d67700deca544e49a58897b98264710, type: 3}
+  _materialPanelInfoPool:
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
