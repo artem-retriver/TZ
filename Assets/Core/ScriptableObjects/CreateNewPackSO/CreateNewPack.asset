@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0af056e4f68104680a1a954a5ebca6, type: 3}
+  m_Name: CreateNewPack
+  m_EditorClassIdentifier: 
+  _shopProductPrefab: {fileID: 339238843600280930, guid: 8d67700deca544e49a58897b98264710, type: 3}
+  _allMaterialPanelInfoPool:
+  - {fileID: 11400000, guid: 12dd16ed8efd85f4a9171ef920a44866, type: 2}
+  - {fileID: 11400000, guid: 86aa7781cb0a68e49b2e20e4c6de14d8, type: 2}
+  - {fileID: 11400000, guid: 9de7e1c06970f81428d0b841dee95dcd, type: 2}
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  emptyMaterialPanelInfoPool:
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  - {fileID: 11400000, guid: 723e9f7a6b54efe49bba1af7bc6b8728, type: 2}
+  titleText: dfdsfdsfdsf
+  descriptionText: sdfdsfdsf
+  priceText: 23
+  discountText: 33
+  materialText: Wood
+  materialCountText: 4
+  productText: PackTwo

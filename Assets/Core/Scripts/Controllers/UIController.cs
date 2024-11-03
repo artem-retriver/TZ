@@ -1,68 +1,104 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private List<ShopProductInfo> _shopProductInfoPool;
-    [SerializeField] private List<ShopProduct> _shopProductPool;
-    [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private ShopProductController _shopProductController;
+    [SerializeField] private GameObject[] _panelPool;
     [SerializeField] private GameObject _contentForShopProduct;
-    [SerializeField] private Button[] _shopButtons;
+    [SerializeField] private Button[] _shopPanelButtons;
+    [SerializeField] private Button[] _createNewPackPanelButtons;
+    [SerializeField] private Button _createShopProductButton;
+    [SerializeField] private Button _filledPanelButton;
 
-    private bool isActiveShop, isInitializeShopProducts;
+    private bool isActiveShop, isActiveFilled, isActiveCreateNewPack, isInitializeShopProducts;
 
     private void Start()
     {
-        _shopButtons[0].onClick.AddListener(ShopButton);
-        _shopButtons[1].onClick.AddListener(ShopButton);
+        InitializeNewListeners();
     }
 
-    private void ShopButton()
+    private void InitializeNewListeners()
+    {
+        foreach (var button in _shopPanelButtons)
+        {
+            button.onClick.AddListener(ShopPanelButton);
+        }
+        
+        foreach (var button in _createNewPackPanelButtons)
+        {
+            button.onClick.AddListener(CreateNewPackPanelButton);
+        }
+        
+        _createShopProductButton.onClick.AddListener(CheckForEverythingIsFilled);
+        _filledPanelButton.onClick.AddListener(FilledPanelButton);
+    }
+
+    private void CheckForEverythingIsFilled()
+    {
+        if (_shopProductController.CheckForCreateNewPack(_contentForShopProduct.transform) == false)
+        {
+            FilledPanelButton();
+        }
+        else
+        {
+            CreateNewPackPanelButton();
+            ShopPanelButton();
+        }
+    }
+
+    private void FilledPanelButton()
+    {
+        if (isActiveFilled == false)
+        {
+            isActiveFilled = true;
+            _panelPool[2].transform.DOScale(1, 0.1f);
+        }
+        else
+        {
+            isActiveFilled = false;
+            _panelPool[2].transform.DOScale(0, 0.1f);
+        }
+    }
+    
+    private void CreateNewPackPanelButton()
+    {
+        if (isActiveCreateNewPack == false)
+        {
+            isActiveCreateNewPack = true;
+
+            _panelPool[0].transform.DOScale(1, 0.1f);
+        }
+        else
+        {
+            isActiveCreateNewPack = false;
+
+            _panelPool[0].transform.DOScale(0, 0.1f);
+        }
+    }
+
+    private void ShopPanelButton()
     {
         if (isInitializeShopProducts == false)
         {
             isInitializeShopProducts = true;
             
-            InitializeShopProductPool();
+            _shopProductController.InitializeShopProductPool(_contentForShopProduct.transform);
         }
         
         if (isActiveShop == false)
         {
             isActiveShop = true;
 
-            _shopPanel.transform.DOScale(1, 0.3f);
+            _panelPool[1].transform.DOScale(1, 0.1f);
             _contentForShopProduct.transform.DOMoveY(650, 0);
         }
         else
         {
             isActiveShop = false;
 
-            _shopPanel.transform.DOScale(0, 0.3f);
-        }
-    }
-
-    private void InitializeShopProductPool()
-    {
-        foreach (var shopProductInfo in _shopProductInfoPool)
-        {
-            var newShopProduct = shopProductInfo.shopProductPrefab;
-
-            newShopProduct.ChangeTitleText(shopProductInfo.titleText);
-            newShopProduct.ChangeDescriptionText(shopProductInfo.descriptionText);
-            //newShopProduct.ChangeProductSprite(t.productSprite);
-            newShopProduct.ChangeOldPriceText(shopProductInfo.oldPriceText);
-            newShopProduct.ChangeNewPriceText(shopProductInfo.newPriceText);
-            newShopProduct.ChangeMaterialPanelInfoPool(shopProductInfo.materialPanelInfoPool);
-            
-            var newShopProductObject = Instantiate(newShopProduct, _contentForShopProduct.transform);
-            
-            //newShopProductObject.InitializeMaterialPanelPool();
-            
-            _shopProductPool.Add(newShopProductObject);
+            _panelPool[1].transform.DOScale(0, 0.1f);
         }
     }
 }
