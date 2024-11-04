@@ -4,9 +4,12 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("Controllers:")]
     [SerializeField] private ShopProductController _shopProductController;
+    [Header("Game Objects:")]
     [SerializeField] private GameObject[] _panelPool;
     [SerializeField] private GameObject _contentForShopProduct;
+    [Header("Buttons:")]
     [SerializeField] private Button[] _shopPanelButtons;
     [SerializeField] private Button[] _createNewPackPanelButtons;
     [SerializeField] private Button _createShopProductButton;

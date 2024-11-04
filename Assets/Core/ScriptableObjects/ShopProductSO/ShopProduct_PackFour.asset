@@ -23,9 +23,9 @@ MonoBehaviour:
   _discountText: 17
   _productSprite: {fileID: 21300000, guid: a2c6f36b0d75c784fbc16cba46b31048, type: 3}
   _shopProductPrefab: {fileID: 339238843600280930, guid: 8d67700deca544e49a58897b98264710, type: 3}
-  _materialPanelInfoPool:
-  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
-  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
-  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
+  _materialInfoPool:
   - {fileID: 11400000, guid: 86aa7781cb0a68e49b2e20e4c6de14d8, type: 2}
   - {fileID: 11400000, guid: 86aa7781cb0a68e49b2e20e4c6de14d8, type: 2}
+  - {fileID: 11400000, guid: 86aa7781cb0a68e49b2e20e4c6de14d8, type: 2}
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}
+  - {fileID: 11400000, guid: bf565af9f76753847941a429619002e2, type: 2}

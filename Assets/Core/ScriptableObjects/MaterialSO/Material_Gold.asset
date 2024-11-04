@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3639d3480b183714babd92c742671bf1, type: 3}
-  m_Name: Material_Iron
+  m_Name: Material_Gold
   m_EditorClassIdentifier: 
-  _idMaterial: Iron
-  _materialCountText: 10
-  _productSprite: {fileID: 21300000, guid: e78313c7d47aeb845aee79d5bc8d26c5, type: 3}
+  _idMaterial: Gold
+  _materialCountText: 50
+  _materialSprite: {fileID: 21300000, guid: 93b5b28db06f8d2439c780ec3aeb28d2, type: 3}
   _materialPanelPrefab: {fileID: 179530309851957724, guid: 57f835e38c900ba48bb1fc7422a771d8, type: 3}

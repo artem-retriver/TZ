@@ -1,15 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShopProductInfo", menuName = "Game/New Material Panel SO")]
-public class MaterialPanelInfo : ScriptableObject
+[CreateAssetMenu(fileName = "MaterialInfo", menuName = "Game/New Material Panel SO")]
+public class MaterialInfo : ScriptableObject
 {
     [SerializeField] private string _idMaterial;
     [SerializeField] private string _materialCountText;
-    [SerializeField] private Sprite _productSprite;
+    [SerializeField] private Sprite _materialSprite;
     [SerializeField] private MaterialPanel _materialPanelPrefab;
 
     public string idMaterial => _idMaterial;
     public string materialCountText => this._materialCountText;
-    public Sprite productSprite => this._productSprite;
+    public Sprite materialSprite => this._materialSprite;
     public MaterialPanel materialPanelPrefab => this._materialPanelPrefab;
 }

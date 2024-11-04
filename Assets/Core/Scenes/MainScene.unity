@@ -3432,7 +3432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -532, y: 2644645.8}
+  m_AnchoredPosition: {x: -532, y: 3379873.8}
   m_SizeDelta: {x: 1080, y: 750}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1063024657
@@ -3902,7 +3902,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b44a53e4302375944b66f2f2ddffe775, type: 2}
   - {fileID: 11400000, guid: 0ea692d906c0d5a44ae4e7823c6439fd, type: 2}
   _shopProductPool: []
-  _createNewPackInfo: {fileID: 11400000, guid: e334420d3988bf241869799bcdc17d44, type: 2}
+  _newShopProductInfo: {fileID: 11400000, guid: e334420d3988bf241869799bcdc17d44, type: 2}
   _contentRectTransform: {fileID: 1017929870}
   _newPackTextPool:
   - {fileID: 1729318589}

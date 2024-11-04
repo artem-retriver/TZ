@@ -1,24 +1,23 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShopProductController : MonoBehaviour
 {
+    [Header("Shop Products:")]
     [SerializeField] private List<ShopProductInfo> _shopProductInfoPool;
     [SerializeField] private List<ShopProduct> _shopProductPool;
-    [SerializeField] private CreateNewPackInfo _createNewPackInfo;
+    [SerializeField] private NewShopProductInfo _newShopProductInfo;
+    [Header("Rect Transforms:")]
     [SerializeField] private RectTransform _contentRectTransform;
+    [Header("Texts:")]
     [SerializeField] private TMP_InputField[] _newPackTextPool;
-
+    
+    private Sprite _spriteForNewShopProduct;
+    
     private int countNullText;
-
-    private void Start()
-    {
-        ChangeNewPackInfo(transform,true);
-    }
+    private bool isMaterialTextCorrect, isProductTextCorrect;
 
     public bool CheckForCreateNewPack(Transform contentForShopProduct)
     {
@@ -38,80 +37,90 @@ public class ShopProductController : MonoBehaviour
                 return false;
             }
             
-            foreach (var t in _createNewPackInfo.allMaterialPanelInfoPool)
+            foreach (var newShopProduct in _newShopProductInfo.allMaterialInfoPool)
             {
-                if (_newPackTextPool[4].text == t.idMaterial)
+                if (_newPackTextPool[4].text == newShopProduct.idMaterial)
                 {
-                    ChangeNewPackInfo(contentForShopProduct);
-                    return true;
+                    isMaterialTextCorrect = true;
                 }
+            }
+
+            foreach (var newShopProduct in _newShopProductInfo.allProductInfoPool)
+            {
+                if (_newPackTextPool[6].text == newShopProduct.idProduct)
+                {
+                    isProductTextCorrect = true;
+                }
+            }
+
+            if (isMaterialTextCorrect && isProductTextCorrect)
+            {
+                isMaterialTextCorrect = false;
+                isProductTextCorrect = false;
+                
+                ChangeNewPackInfo(contentForShopProduct);
+                return true;
             }
         }
 
         countNullText = 0;
+        isMaterialTextCorrect = false;
+        isProductTextCorrect = false;
         return false;
     }
 
-    private void ChangeNewPackInfo(Transform contentForShopProduct, bool needChangeAllToNull = false)
+    private void ChangeNewPackInfo(Transform contentForShopProduct)
     {
-        if (needChangeAllToNull)
+        _newShopProductInfo.titleText = _newPackTextPool[0].text;
+        _newShopProductInfo.descriptionText = _newPackTextPool[1].text;
+        _newShopProductInfo.priceText = _newPackTextPool[2].text;
+        _newShopProductInfo.discountText = _newPackTextPool[3].text;
+        _newShopProductInfo.materialText = _newPackTextPool[4].text;
+        _newShopProductInfo.materialCountText = _newPackTextPool[5].text;
+        _newShopProductInfo.productText = _newPackTextPool[6].text;
+
+        var materialCount = float.Parse(_newShopProductInfo.materialCountText);
+
+        materialCount = materialCount switch
         {
-            _createNewPackInfo.emptyMaterialPanelInfoPool.Clear();
-            
-            _createNewPackInfo.titleText = string.Empty;
-            _createNewPackInfo.descriptionText = string.Empty;
-            _createNewPackInfo.priceText = string.Empty;
-            _createNewPackInfo.discountText = string.Empty;
-            _createNewPackInfo.materialText = string.Empty;
-            _createNewPackInfo.materialCountText = string.Empty;
-            _createNewPackInfo.productText = string.Empty;
-        }
-        else
+            > 6 => 6,
+            < 3 => 3,
+            _ => materialCount
+        };
+
+        foreach (var newShopProduct in _newShopProductInfo.allMaterialInfoPool)
         {
-            _createNewPackInfo.titleText = _newPackTextPool[0].text;
-            _createNewPackInfo.descriptionText = _newPackTextPool[1].text;
-            _createNewPackInfo.priceText = _newPackTextPool[2].text;
-            _createNewPackInfo.discountText = _newPackTextPool[3].text;
-            _createNewPackInfo.materialText = _newPackTextPool[4].text;
-            _createNewPackInfo.materialCountText = _newPackTextPool[5].text;
-            _createNewPackInfo.productText = _newPackTextPool[6].text;
-
-            var materialCount = float.Parse(_createNewPackInfo.materialCountText);
-
-            materialCount = materialCount switch
+            if (_newShopProductInfo.materialText == newShopProduct.idMaterial)
             {
-                > 6 => 6,
-                < 3 => 3,
-                _ => materialCount
-            };
-
-            foreach (var t in _createNewPackInfo.allMaterialPanelInfoPool)
-            {
-                if (_createNewPackInfo.materialText == t.idMaterial)
+                for (int i = 0; i < materialCount; i++)
                 {
-                    for (int i = 0; i < materialCount; i++)
-                    {
-                        _createNewPackInfo.emptyMaterialPanelInfoPool.Add(t);
-                    }
-                    break;
+                    _newShopProductInfo.emptyMaterialInfoPool.Add(newShopProduct);
                 }
+                break;
             }
-
-            CreateNewPack(contentForShopProduct);
         }
+
+        foreach (var newShopProduct in _newShopProductInfo.allProductInfoPool)
+        {
+            if (_newShopProductInfo.productText == newShopProduct.idProduct)
+            {
+                _spriteForNewShopProduct = newShopProduct.productSprite;
+            }
+        }
+            
+        CreateNewPack(contentForShopProduct);
     }
 
     private void CreateNewPack(Transform contentForShopProduct)
     {
-        var newShopProduct = _createNewPackInfo.shopProductPrefab;
-        var newProductSprite = Resources.Load<Sprite>(_createNewPackInfo.productText);
+        var newShopProduct = _newShopProductInfo.shopProductPrefab;
 
-        newShopProduct.ChangeTitleText(_createNewPackInfo.titleText);
-        newShopProduct.ChangeDescriptionText(_createNewPackInfo.descriptionText);
-        newShopProduct.ChangeCurrentPriceText(float.Parse(_createNewPackInfo.priceText));
-        newShopProduct.ChangeDiscountText(float.Parse(_createNewPackInfo.discountText));
-        newShopProduct.ChangeProductSprite(newProductSprite);
-        newShopProduct.ChangeMaterialPanelInfoPool(_createNewPackInfo.emptyMaterialPanelInfoPool);
+        newShopProduct.ChangeTitleText(_newShopProductInfo.titleText);
+        newShopProduct.ChangeDescriptionText(_newShopProductInfo.descriptionText);
+        newShopProduct.ChangeCurrentPriceText(float.Parse(_newShopProductInfo.priceText));
+        newShopProduct.ChangeDiscountText(float.Parse(_newShopProductInfo.discountText));
+        newShopProduct.ChangeProductSprite(_spriteForNewShopProduct);
+        newShopProduct.ChangeMaterialPanelInfoPool(_newShopProductInfo.emptyMaterialInfoPool);
             
         var newShopProductObject = Instantiate(newShopProduct, contentForShopProduct);
             
@@ -120,6 +129,9 @@ public class ShopProductController : MonoBehaviour
         _shopProductPool.Add(newShopProductObject);
             
         ChangeHeightContentForShopProduct();
+        
+        ClearNewPackInfo();
+        ClearNewPackTextInfo();
     }
     
     public void InitializeShopProductPool(Transform contentForShopProduct)
@@ -134,7 +146,7 @@ public class ShopProductController : MonoBehaviour
             newShopProduct.ChangeCurrentPriceText(shopProductInfo.priceText);
             newShopProduct.ChangeDiscountText(shopProductInfo.discountText);
             newShopProduct.ChangeProductSprite(shopProductInfo.productSprite);
-            newShopProduct.ChangeMaterialPanelInfoPool(shopProductInfo.materialPanelInfoPool);
+            newShopProduct.ChangeMaterialPanelInfoPool(shopProductInfo.materialInfoPool);
             
             var newShopProductObject = Instantiate(newShopProduct, contentForShopProduct);
             
@@ -143,6 +155,27 @@ public class ShopProductController : MonoBehaviour
             _shopProductPool.Add(newShopProductObject);
             
             ChangeHeightContentForShopProduct();
+        }
+    }
+
+    private void ClearNewPackInfo()
+    {
+        _newShopProductInfo.emptyMaterialInfoPool.Clear();
+            
+        _newShopProductInfo.titleText = string.Empty;
+        _newShopProductInfo.descriptionText = string.Empty;
+        _newShopProductInfo.priceText = string.Empty;
+        _newShopProductInfo.discountText = string.Empty;
+        _newShopProductInfo.materialText = string.Empty;
+        _newShopProductInfo.materialCountText = string.Empty;
+        _newShopProductInfo.productText = string.Empty;
+    }
+    
+    private void ClearNewPackTextInfo()
+    {
+        foreach (var newPackText in _newPackTextPool)
+        {
+            newPackText.text = string.Empty;
         }
     }
     

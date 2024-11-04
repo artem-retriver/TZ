@@ -10,7 +10,7 @@ public class ShopProductInfo : ScriptableObject
     [SerializeField] private float _discountText;
     [SerializeField] private Sprite _productSprite;
     [SerializeField] private ShopProduct _shopProductPrefab;
-    [SerializeField] private List<MaterialPanelInfo> _materialPanelInfoPool;
+    [SerializeField] private List<MaterialInfo> _materialInfoPool;
     
     public string titleText => this._titleText;
     public string descriptionText => this._descriptionText;
@@ -18,5 +18,5 @@ public class ShopProductInfo : ScriptableObject
     public float discountText => this._discountText;
     public Sprite productSprite => this._productSprite;
     public ShopProduct shopProductPrefab => this._shopProductPrefab;
-    public List<MaterialPanelInfo> materialPanelInfoPool => this._materialPanelInfoPool;
+    public List<MaterialInfo> materialInfoPool => this._materialInfoPool;
 }

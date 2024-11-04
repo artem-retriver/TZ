@@ -4,21 +4,25 @@ using UnityEngine.UI;
 
 public class ShopProduct : MonoBehaviour
 {
-    [SerializeField] private List<MaterialPanelInfo> _materialPanelInfoPool;
+    [Header("Materials:")]
+    [SerializeField] private List<MaterialInfo> _materialPanelInfoPool;
     [SerializeField] private List<MaterialPanel> _materialPanelPool;
+    [Header("Texts:")]
     [SerializeField] private Text _titleText;
     [SerializeField] private Text _descriptionText;
     [SerializeField] private Text _discountText;
     [SerializeField] private Text _currentPriceText;
     [SerializeField] private Text _discountPriceText;
+    [Header("Images:")]
     [SerializeField] private Image _productSprite;
+    [Header("Game Objects:")]
     [SerializeField] private GameObject _contentForMaterialPanel;
 
     private float discount, currentPrice, discountPrice;
 
-    public void ChangeMaterialPanelInfoPool(List<MaterialPanelInfo> materialPanelInfoPool)
+    public void ChangeMaterialPanelInfoPool(List<MaterialInfo> materialInfoPool)
     {
-        _materialPanelInfoPool = materialPanelInfoPool;
+        _materialPanelInfoPool = materialInfoPool;
     }
     
     public void ChangeTitleText(string titleText)
@@ -63,7 +67,7 @@ public class ShopProduct : MonoBehaviour
             var newMaterialPanelInfo = materialPanelInfo.materialPanelPrefab;
             
             newMaterialPanelInfo.ChangeMaterialCountText(materialPanelInfo.materialCountText);
-            newMaterialPanelInfo.ChangeProductSprite(materialPanelInfo.productSprite);
+            newMaterialPanelInfo.ChangeMaterialSprite(materialPanelInfo.materialSprite);
             
             var newMaterialPanel = Instantiate(newMaterialPanelInfo, _contentForMaterialPanel.transform);
             

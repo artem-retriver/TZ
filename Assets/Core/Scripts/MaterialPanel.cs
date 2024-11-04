@@ -11,8 +11,8 @@ public class MaterialPanel : MonoBehaviour
         _materialCountText.text = materialCountText;
     }
     
-    public void ChangeProductSprite(Sprite productSprite)
+    public void ChangeMaterialSprite(Sprite materialSprite)
     {
-        _productSprite.sprite = productSprite;
+        _productSprite.sprite = materialSprite;
     }
 }

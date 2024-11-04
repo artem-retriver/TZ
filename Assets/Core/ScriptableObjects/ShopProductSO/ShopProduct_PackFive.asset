@@ -23,7 +23,7 @@ MonoBehaviour:
   _discountText: 23
   _productSprite: {fileID: 21300000, guid: 5f406b6599ab5a243ba1489dbe125fa2, type: 3}
   _shopProductPrefab: {fileID: 339238843600280930, guid: 8d67700deca544e49a58897b98264710, type: 3}
-  _materialPanelInfoPool:
+  _materialInfoPool:
   - {fileID: 11400000, guid: 9de7e1c06970f81428d0b841dee95dcd, type: 2}
   - {fileID: 11400000, guid: 9de7e1c06970f81428d0b841dee95dcd, type: 2}
   - {fileID: 11400000, guid: 9de7e1c06970f81428d0b841dee95dcd, type: 2}
